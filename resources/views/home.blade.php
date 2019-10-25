@@ -3,9 +3,9 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <!--Dashboard-->
 @stop
 
 @section('content')
-    <p>You are logged in!</p>
+    <p>{{ __('adminlte::adminlte.sign_sucess') }}</p>
 @stop
