@@ -29,3 +29,6 @@
     視圖
     $ php artisan vendor:publish --provider="JeroenNoten\LaravelAdminLte\AdminLteServiceProvider" --tag=views
 
+>2.控制器設置
+   $ php artisan make:controller UserController --resource  
+>3.路由設置

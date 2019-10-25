@@ -17,6 +17,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', function() {
-    return view('home');
-})->name('home')->middleware('auth');
+// Route::name('home')->prefix('/home')
+//         ->get('', function() {
+//     return view('home');
+// })->middleware('auth');
+
+Route::name('home')->middleware('auth')->prefix('home')->group(function () {
+    Route::get('/', function(){
+        return view('home');
+    });
+    // 使用者管理
+    Route::resource('/user', 'UserController');
+});
