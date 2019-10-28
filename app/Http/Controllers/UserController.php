@@ -16,6 +16,7 @@ class UserController extends Controller
     {
         // 查詢頁面+分頁
         $users = User::paginate(3);
+        // dd($users);
         return view('user.index', compact('users'));
     }
 
@@ -52,7 +53,11 @@ class UserController extends Controller
     public function show($id)
     {
         // 顯示單筆
-        return view('user.show');
+        $find = new User();
+        $user = $find->find($id)->toArray();
+        // $users = $find->find($id);
+        // dd($users);
+        return view('user.show', compact('user'));
     }
 
     /**
@@ -64,7 +69,9 @@ class UserController extends Controller
     public function edit($id)
     {
         // 編輯頁面並顯示舊資料
-        return view('user.edit');
+        $find = new User();
+        $user = $find->find($id)->toArray();
+        return view('user.edit', compact('user'));
     }
 
     /**
@@ -77,6 +84,11 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         // 更新
+        $find = User::find($id);
+        $find->name = $request['name'];
+        $find->email = $request['email'];
+        $find->save();
+        return redirect()->route('home.users.index')->with('message', '更新成功!');
     }
 
     /**
@@ -88,5 +100,8 @@ class UserController extends Controller
     public function destroy($id)
     {
         // 刪除
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->route('home.users.index')->with('message', '刪除成功');
     }
 }

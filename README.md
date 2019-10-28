@@ -31,10 +31,15 @@
 
 >2.控制器設置
    $ php artisan make:controller UserController --resource
-   
+
 >3.CRUD設置
 
 **新增**
 
 * UserController 建立index()、create()、store()方法對應動作
 * 對應頁面的模板(user.index、user.create)
+
+**修改,刪除,查詢**
+
+* UserController 建立 edit()、update()、 destroy()方法對應動作
+* 對應頁面的模板()

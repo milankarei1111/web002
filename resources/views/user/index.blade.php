@@ -1,4 +1,4 @@
-@extends('adminlte::page');
+@extends('adminlte::page')
 
 @section('title', 'AdminLTE')
 
@@ -45,14 +45,18 @@
                                     </a>
                                 </td>
                                 <td class="text-center">
-                                        <a class="btn btn-default btn-xs" href="{{ route('home.users.edit', $user->id) }}">
-                                            <i class="fa fa-eye fa-fw"></i>
-                                        </a>
+                                    <a class="btn btn-default btn-xs" href="{{ route('home.users.edit', $user->id) }}">
+                                        <i class="fa fa-edit fa-fw"></i>
+                                    </a>
                                 </td>
                                 <td class="text-center">
-                                        <a class="btn btn-default btn-xs" href="{{ route('home.users.destroy', $user->id) }}">
-                                            <i class="fa fa-eye fa-fw"></i>
+                                    <form action="{{ route('home.users.destroy', $user->id) }}" method="POST">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <a class="btn btn-danger btn-xs" href="" type="submit">
+                                            <i class="fa fa-times fa-fw"></i>
                                         </a>
+                                    </form>
                                 </td>
                             </tr>
                         @empty
