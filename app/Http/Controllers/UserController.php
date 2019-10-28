@@ -14,9 +14,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        // 查詢頁面
-        $users = User::all();
-        return view('user.index')->compact('users');
+        // 查詢頁面+分頁
+        $users = User::paginate(3);
+        return view('user.index', compact('users'));
     }
 
     /**
@@ -39,7 +39,8 @@ class UserController extends Controller
     public function store(Request $request)
     {
         // 新增
-
+       User::create($request->all());
+       return redirect()->route('home.users.index')->with('message', '新增資料成功!');
     }
 
     /**

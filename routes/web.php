@@ -22,10 +22,10 @@ Auth::routes();
 //     return view('home');
 // })->middleware('auth');
 
-Route::name('home')->middleware('auth')->prefix('home')->group(function () {
+Route::name('home.')->middleware('auth')->prefix('home')->group(function () {
     Route::get('/', function(){
         return view('home');
     });
     // 使用者管理
-    Route::resource('/user', 'UserController');
+   Route::resource('users', 'UserController');
 });

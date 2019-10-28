@@ -146,7 +146,7 @@ return [
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
-            'url'  => '/home/user',
+            'url'  => '/home/users',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
