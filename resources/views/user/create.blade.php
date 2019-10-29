@@ -13,9 +13,19 @@
                 <div class="box-header">
                 <h3 class="box-title">新增帳號</h3>
             </div>{{-- /.box-header --}}
+                
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="box-body table-responsive no-padding">
                 <form action="{{ route('home.users.store') }}" method="POST">
-                    {{ csrf_field() }}
+                    @csrf
                     <div class="form-group has-feedback">
                         <input type="text" name="name" class="form-control"
                                 placeholder="{{ __('adminlte::adminlte.full_name') }}">

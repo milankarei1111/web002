@@ -38,6 +38,11 @@
 
 * UserController 建立index()、create()、store()方法對應動作
 * 對應頁面的模板(user.index、user.create)
+* 加入validate()法方來驗證規則以及密碼使用HASH加密
+* 因應表單驗證錯誤提示,下載語言包套件: caouecs/laravel-lang
+
+    指令 
+    $ composer require caouecs/laravel-lang:~4.0
 
 **修改,刪除,查詢**
 

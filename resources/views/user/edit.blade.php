@@ -16,8 +16,8 @@
                 <form action="{{ route('home.users.update', $user['id']) }}" method="POST">
                     <p><span>姓名：<input type="text" name="name" value="{{ $user['name'] }}"/></span></p>
                     <p><span>信箱：<input type="text" name="email" value="{{ $user['email'] }}"/></span></p>
-                    {{ csrf_field() }}
-                    {{ method_field('PATCH') }}
+                    @csrf
+                    @method('PATCH')
                     <div class="box-footer text-left">
                       <button class="btn btn-success" type="submit">
                             <i class="fa fa-save">送出</i>

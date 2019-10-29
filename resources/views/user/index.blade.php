@@ -51,11 +51,11 @@
                                 </td>
                                 <td class="text-center">
                                     <form action="{{ route('home.users.destroy', $user->id) }}" method="POST">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-                                        <a class="btn btn-danger btn-xs" href="" type="submit">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger btn-xs" type="submit">
                                             <i class="fa fa-times fa-fw"></i>
-                                        </a>
+                                        </button>
                                     </form>
                                 </td>
                             </tr>

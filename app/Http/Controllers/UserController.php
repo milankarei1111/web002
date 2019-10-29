@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -14,9 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        // 查詢頁面+分頁
-        $users = User::paginate(3);
-        // dd($users);
+        $users = User::orderBy('id','desc')->paginate(2);
         return view('user.index', compact('users'));
     }
 
@@ -27,7 +26,6 @@ class UserController extends Controller
      */
     public function create()
     {
-        // 新增頁面
         return view('user.create');
     }
 
@@ -39,9 +37,26 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        // 新增
-       User::create($request->all());
-       return redirect()->route('home.users.index')->with('message', '新增資料成功!');
+        // 驗證
+        $validateData = $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required'],
+            'password' => ['required', 'string', 'min:8', 'max:255', 'confirmed']
+        ]);
+            $result = false;
+            $result = User::create([
+                'name' =>  $request['name'],
+                'email' => $request['email'],
+                'password' => Hash::make($request['password']),
+            ]);
+            $str = '';
+            if($result == true) {
+                $str = $request['name'].': 新增成功!';
+            } else {
+                $str = $request['name'].': 新增失敗!!';
+            }
+            return redirect()->route('home.users.index')->with('message', $str);
+
     }
 
     /**
@@ -52,11 +67,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        // 顯示單筆
         $find = new User();
         $user = $find->find($id)->toArray();
-        // $users = $find->find($id);
-        // dd($users);
         return view('user.show', compact('user'));
     }
 
@@ -68,7 +80,6 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        // 編輯頁面並顯示舊資料
         $find = new User();
         $user = $find->find($id)->toArray();
         return view('user.edit', compact('user'));
@@ -83,12 +94,18 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // 更新
-        $find = User::find($id);
-        $find->name = $request['name'];
-        $find->email = $request['email'];
-        $find->save();
-        return redirect()->route('home.users.index')->with('message', '更新成功!');
+        $user = User::find($id);
+        $user->name = $request['name'];
+        $user->email = $request['email'];
+        $result = $user->save();
+
+        $str = '';
+        if($result == true) {
+            $str = $request['name'].': 更新成功!';
+        } else {
+            $str = $request['name'].': 更新失敗!!';
+        }
+        return redirect()->route('home.users.index')->with('message', $str);
     }
 
     /**
@@ -99,9 +116,15 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        // 刪除
         $user = User::find($id);
-        $user->delete();
-        return redirect()->route('home.users.index')->with('message', '刪除成功');
+        $result = false;
+        $result = $user->delete();
+        $str = '';
+        if($result == true) {
+            $str = $user->name.': 刪除成功!';
+        } else {
+            $str = $user->name.': 刪除失敗!!';
+        }
+        return redirect()->route('home.users.index')->with('message', $str);
     }
 }
