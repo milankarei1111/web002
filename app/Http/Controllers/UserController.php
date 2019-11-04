@@ -38,7 +38,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         // 驗證
-        $validateData = $this->validate($request, [
+        $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required'],
             'password' => ['required', 'string', 'min:8', 'max:255', 'confirmed']
@@ -94,6 +94,11 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string'],
+        ]);
+        
         $user = User::find($id);
         $user->name = $request['name'];
         $user->email = $request['email'];

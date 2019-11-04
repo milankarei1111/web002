@@ -35,6 +35,9 @@
                         </tr>
                     @endif
                 </div>{{-- /.box-body --}}
+                <div class="box-footer text-right">
+                    <a href="{{ route('home.users.index') }}" class="btn btn-text">返回</a>
+                </div>{{-- /.box-footer --}}
         </div>
     </div>
 @endsection
