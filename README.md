@@ -48,3 +48,18 @@
 
 * UserController 建立 edit()、update()、 destroy()方法對應動作
 * 對應頁面的模板()
+
+## 建置新的練習表格-產品、產品目錄
+
+>1.建立模型與遷移文件
+
+ * 方式1: 個別產生模型、遷移
+
+**產生遷移文件(建立資料結構)**
+
+		$ php artisan make:migration create_categories_table
+		$ php artisan make:migration create_products_table
+
+**執行遷移**
+		
+		$ php artisan migrate
