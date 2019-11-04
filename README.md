@@ -63,3 +63,18 @@
 **執行遷移**
 		
 		$ php artisan migrate
+**建立模型**
+
+		$ php artisan make:model Models/Category
+		$ php artisan make:model Models/Product
+		
+ * 方式2:產生模型時同時產生遷移文件
+
+**產生模型同時產生遷移**
+
+		$ php artisan make:model Models/Category --migration
+		$ php artisan make:model Models/Product --migration
+
+**執行遷移**
+		
+		$ php artisan migrate
