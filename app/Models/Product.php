@@ -6,5 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-
+    protected $table = 'products';
+    protected $fillalbe = [
+        'category_id',
+        'name',
+        'unit',
+        'price',
+        'specification',
+        'inventory',
+        'safety_stock',
+        'image_path',
+        'remark',
+    ];
+    public function categories(){
+        return $this->belongsTo(Category::class);
+    }
 }
