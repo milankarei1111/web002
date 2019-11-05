@@ -139,16 +139,15 @@ return [
         ['header' => 'forms'],
         [
             'text'       => 'Forms',
-            'url'         => 'admin/Forms',
             'icon'        => 'far fa-edit',
             'submenu' => [
                 [
                     'text' => '分類表',
-                    'url'  => 'forms/category',
+                    'url'  => 'home/category',
                 ],
                 [
                     'text'    => '產品表',
-                    'url'     => 'forms/product',
+                    'url'     => 'home/product',
                 ],
                 [
                     'text' => 'level_one',

@@ -26,6 +26,8 @@ Route::name('home.')->middleware('auth')->prefix('home')->group(function () {
     Route::get('/', function(){
         return view('home');
     });
-    // 使用者管理
+
    Route::resource('users', 'UserController');
+
+   Route::resource('category','CategoryController');
 });

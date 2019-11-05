@@ -118,3 +118,11 @@
 > **方法二 : DatabaseSeeder的run函數去call(填充器名稱)**
     
     $ php artisan db:seed
+
+## 建置Category增刪改查功能
+
+>1.新增控制器 CategoryController
+    
+    $ php artisan make:Controller CategoryController --resource
+
+>2.新增web.php 路由內容 Route::resource('category','CategoryController');
