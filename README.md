@@ -80,3 +80,41 @@
 		$ php artisan migrate
 
 >2.定義模型資料表內容:表格相關屬性、關聯
+
+>3.產生模型工廠
+	
+>透過工廠:可快速填充資料--model可以讓模型工廠對應模型類
+	
+**產生工廠Factory**
+		
+    $ php artisan make:factory CategoryFactory --model=Category
+
+**中文化**
+
+    新增AppServiceProvider register()
+
+    綁定一個單例（Singleton）
+
+    $this->app->singleton(\Faker\Generator::class,function(){
+            return \Faker\Factory::create('zh_TW');
+        });
+
+>4.產生填充文件
+
+**建立填充文件** 約定名稱:大寫表名+TableSeeder
+
+    $ php artisan make:seeder ProductTableSeeder
+
+**编写好填充器类之后，需要通过 dump-autoload 命令重新生成 Composer 的自动加载器**
+
+    $ composer dump-autoload
+
+**執行填充**
+
+> **方法一 : 直接指定填充器名稱**
+
+    $ php artisan db:seed --class=填充器名稱
+
+> **方法二 : DatabaseSeeder的run函數去call(填充器名稱)**
+    
+    $ php artisan db:seed
