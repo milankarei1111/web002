@@ -126,3 +126,5 @@
     $ php artisan make:Controller CategoryController --resource
 
 >2.新增web.php 路由內容 Route::resource('category','CategoryController');
+
+>3.新增view框架 category/index.blade.php
