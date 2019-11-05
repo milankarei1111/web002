@@ -13,7 +13,7 @@
 
 ###以上後台完成後.則可使用Adminlate登入與驗證及用戶驗證功能
 
-## 建置平台
+## 建置表格
 >1.更新 jeroennoten/Laravel-AdminLTE套件包設定
 
     $ composer update jeroennoten/laravel-adminlte

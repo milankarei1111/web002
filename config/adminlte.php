@@ -136,6 +136,26 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
+        ['header' => 'forms'],
+        [
+            'text'       => 'Forms',
+            'url'         => 'admin/Forms',
+            'icon'        => 'far fa-edit',
+            'submenu' => [
+                [
+                    'text' => '分類表',
+                    'url'  => 'forms/category',
+                ],
+                [
+                    'text'    => '產品表',
+                    'url'     => 'forms/product',
+                ],
+                [
+                    'text' => 'level_one',
+                    'url'  => '#',
+                ],
+            ],
+        ],
         [
             'text'        => 'pages',
             'url'         => 'admin/pages',
