@@ -11,7 +11,7 @@
         <div class="col-sm-12">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">分類表</h3>
+                    <h3 class="box-title">分類對應產品表</h3>
                 </div>
                 {{-- /.box-header --}}
                 <div class="box-body">
@@ -26,26 +26,42 @@
                             <div class="col-sm-6">
                                 <div id="example1_filter" class="dataTables_filter">
                                     <label>搜尋:
-                                        <input type="search" class="form-control input-sm" placeholder="" aria-controls="example1">
+                                        <input id="category_id" type="search" class="form-control input-sm" placeholder="" aria-controls="example1">
                                     </label>
                                 </div>
                             </div>
                         </div>
+                        {{--table start --}}
                         <div class="row">
                             <div class="col-sm-12">
                                 <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                     <thead>
                                         <tr role="row">
                                             <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 130px;">分類序號</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 162px;">分類名稱</th>
+                                            {{-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 162px;">分類名稱</th> --}}
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 162px;">產品名稱</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 162px;">單位</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 162px;">價格</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 162px;">規格</th>
                                         </tr>
                                     </thead>
+                                    @forelse ($products as $product)
+                                        <tbody>
+                                            <tr role="row" class="odd">
+                                                <td class="sorting_1">{{$product->category_id}}</td>
+                                                <td>{{$product->name}}</td>
+                                                <td>{{$product->unit}}</td>
+                                                <td>{{$product->price}}</td>
+                                                <td>{{$product->specification}}</td>
+                                            </tr>
+                                        </tbody>
+                                    @empty
                                     <tbody>
-                                        <tr role="row" class="odd">
-                                            <td class="sorting_1">顯示顏色列</td>
-                                            <td>未顯示顏色類</td>
-                                        </tr>
-                                    </tbody>
+                                            <tr role="row" class="odd">
+                                              <td colspan="999" class="text-center">查無資料!</td>                                            </tr>
+                                        </tbody>
+                                    @endforelse
+
                                     <tfoot>
                                         <tr>
                                             <th>分類序號</th>
@@ -55,21 +71,22 @@
                                 </table>
                             </div>
                         </div>
+                        {{--table end --}}
                         <div class="row">
                             <div class="col-sm-5">
-                                <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">顯示 1 to 57 of 57 entries</div>
+                                <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">顯示 X to X of X entries</div>
                             </div>
                             <div class="col-sm-7">
-                                    <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
-                                        <ul class="pagination">
-                                            <li class="paginate_button previous disabled" id="example1_previous">
-                                                <a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0">Previous</a>
-                                            </li><li class="paginate_button active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0">1</a>
-                                            </li><li class="paginate_button next disabled" id="example1_next">
-                                                <a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0">Next</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                                    <ul class="pagination">
+                                        <li class="paginate_button previous disabled" id="example1_previous">
+                                            <a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0">Previous</a>
+                                        </li><li class="paginate_button active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0">1</a>
+                                        </li><li class="paginate_button next disabled" id="example1_next">
+                                            <a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0">Next</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>

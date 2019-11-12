@@ -15,7 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-
+        $products = Product::where('price','<',500)->get(); //Collection 可以直接對PHP 數組一樣對其進行循環
+        return view('category.index', compact('products'));
     }
 
     /**

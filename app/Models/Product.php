@@ -18,7 +18,10 @@ class Product extends Model
         'image_path',
         'remark',
     ];
-    public function categories(){
+    public function category(){
         return $this->belongsTo(Category::class);
+    }
+    public function scopeOrderByPrice($query){
+        return $query->orderBy('products.price', 'DESC')->get();
     }
 }
